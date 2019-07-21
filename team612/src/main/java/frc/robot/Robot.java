@@ -12,6 +12,8 @@ public class Robot extends TimedRobot
 
     public static final Drivetrain drivetrain = new Drivetrain();
 
+    public static NetworkTableListener visionListener = new NetworkTableListener("Vision_Table");
+
     public static OI oi;
 
     private Command autonomousCommand;
@@ -21,6 +23,8 @@ public class Robot extends TimedRobot
     public void robotInit() 
     {
         oi = new OI();
+
+        visionListener.createListeners();  // Create listener objects for network table fields
     }
 
     @Override

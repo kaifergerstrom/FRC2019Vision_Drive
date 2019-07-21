@@ -25,10 +25,12 @@ public class DefaultDrive extends Command {
   public static double direction_x;
   public static double direction_y; 
 
+
   public DefaultDrive() {
     requires(Robot.drivetrain);  // Require the drivetrain object
   }
 
+  
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
@@ -42,6 +44,7 @@ public class DefaultDrive extends Command {
     rotation = OI.driver.getX(Hand.kRight);
 
   }
+
 
   // Called repeatedly when this Command is scheduled to run
   protected void doDead() {  // Calculate the DEADZONE of the direction values
@@ -81,17 +84,21 @@ public class DefaultDrive extends Command {
     
   }
 
+
   @Override
   protected boolean isFinished() {
     return false;
   }
 
+
   @Override
   protected void end() {
   }
+
 
   @Override
   protected void interrupted() {
   }
   
+
 }
