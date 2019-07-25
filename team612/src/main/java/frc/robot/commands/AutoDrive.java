@@ -13,9 +13,9 @@ import frc.robot.Robot;
 public class AutoDrive extends Command {
 
   // Split elements off array into individual variables
-  private double positionOffset = Robot.visionListener.responseTable[0];
-  private double leftTapeLength = Robot.visionListener.responseTable[1];
-  private double rightTapeLength = Robot.visionListener.responseTable[2];
+  private double positionOffset;
+  private double leftTapeLength;
+  private double rightTapeLength;
 
   private double POSITION_DEADBAND = 10;
   private double KP_POSITION = 0.02;
@@ -30,12 +30,12 @@ public class AutoDrive extends Command {
   // Determine if the offset is not within a deadband apply magnitude based on value calculated with KP
   private double calculateMagnitude() {
     double magnitude = 0;
-
+    
     if (Math.abs(positionOffset) > POSITION_DEADBAND) {  // Check if position offset not within deadband
-      magnitude = KP_POSITION * Math.abs(positionOffset);
+      magnitude = Math.abs(positionOffset);
     }
-
-    return magnitude;
+    
+    return KP_POSITION * magnitude;
   }
 
 
@@ -60,9 +60,19 @@ public class AutoDrive extends Command {
   @Override
   protected void execute() {
 
+    this.positionOffset = Robot.visionListener.responseTable[0];
+    this.leftTapeLength = Robot.visionListener.responseTable[1];
+    this.rightTapeLength = Robot.visionListener.responseTable[2];
+
+    System.out.println("Running Auto Drive");
     double magnitude = calculateMagnitude();
     double angle = calculateAngle();
     double rotation = calculateRotation();
+
+    System.out.println(magnitude);
+    System.out.println(angle);
+    System.out.println(rotation);
+    System.out.println("---------");
 
     Robot.drivetrain.getDriveTrain().drivePolar(magnitude, angle, rotation);
 

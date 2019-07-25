@@ -1,5 +1,6 @@
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -40,12 +41,12 @@ public class Drivetrain extends Subsystem {
         return drivetrain;
     }
     public void initDefaultCommand() {    
-        /*
+        
         talon_FR.setNeutralMode(NeutralMode.Brake);
         talon_FL.setNeutralMode(NeutralMode.Brake);
         talon_BR.setNeutralMode(NeutralMode.Brake);
         talon_BL.setNeutralMode(NeutralMode.Brake);
-        */
+        
         setDefaultCommand(new DefaultDrive());
     }
 
